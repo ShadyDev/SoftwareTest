@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="py-5 text-center">
+    <h2>Price Check Form</h2>
+    <p class="lead">We encourage you to check the price of your parcel before making your order.</p>
+</div>
+
+<div id="price-check">
+    <div class="row">
+        <div class="col-md-12 order-md-1">
+            <h4 class="mb-3">Package Dimensions</h4>
+            @using (Ajax.BeginForm("CheckPrice", "Home", new AjaxOptions() { UpdateTargetId = "price-check" }, new { @class = "needs-validation" }))
+            {
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label for="width">Width </label><small class="text-muted"> (cm)</small>
+                        <input type="number" class="form-control" id="width" required>
+                        <div class="invalid-feedback">
+                            Valid width is required.
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="height">Height</label><small class="text-muted"> (cm)</small>
+                        <input type="number" class="form-control" id="height" required>
+                        <div class="invalid-feedback">
+                            Valid height is required.
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="depth">Depth</label><small class="text-muted"> (cm)</small>
+                        <input type="number" class="form-control" id="depth" required>
+                        <div class="invalid-feedback">
+                            Valid depth is required.
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="weight">Weight</label><small class="text-muted"> (kg)</small>
+                        <input type="number" class="form-control" id="weight" required>
+                        <div class="invalid-feedback">
+                            Valid weight is required.
+                        </div>
+                    </div>
+                </div>
+                <div id="price-tag">
+                    @Html.Partial("~/Views/Home/_Price.cshtml")
+                </div>
+                <div id="checkout-form">
+                    @if (false)
+                    {
+                        @Html.Partial("~/Views/Order/_Index.cshtml")
+                    }
+                    else
+                    {
+                        @Ajax.ActionLink("Estimate my price", "_PartialEmployeeIndex", "Employee", new AjaxOptions() { UpdateTargetId = "price-tag" }, new { @class = "btn btn-primary btn-lg btn-block" })
+                        @*<button class="btn btn-primary btn-lg btn-block" type="submit">Estimate my price</button>*@
+                    }
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>

@@ -1,0 +1,72 @@
+﻿@model SoftwareTest.ViewModels.FormViewModel
+
+<div id="price-form">
+    <div class="row">
+        <div class="col-md-12 order-md-1">
+            <h4 class="mb-3">Package Dimensions</h4>
+            @using (Ajax.BeginForm("CheckPrice", "Home", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "price-form", InsertionMode = InsertionMode.Replace, OnBegin = "spinnerToggle", OnSuccess = "successAnimation", LoadingElementId = "loader" }, new { @class = "needs-validation", @novalidate = "novalidate" }))
+            {
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        @Html.LabelFor(x => x.Width)<small class="text-muted"> (cm)</small>
+                        @Html.TextBoxFor(x => x.Width, new { @class = "form-control", @required = "required", @type = "number" })
+                        <div class="invalid-feedback">
+                            Valid width is required.
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        @Html.LabelFor(x => x.Height)<small class="text-muted"> (cm)</small>
+                        @Html.TextBoxFor(x => x.Height, new { @class = "form-control", @required = "required", @type = "number" })
+                        <div class="invalid-feedback">
+                            Valid height is required.
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        @Html.LabelFor(x => x.Depth)<small class="text-muted"> (cm)</small>
+                        @Html.TextBoxFor(x => x.Depth, new { @class = "form-control", @required = "required", @type = "number" })
+                        <div class="invalid-feedback">
+                            Valid depth is required.
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        @Html.LabelFor(x => x.Weight)<small class="text-muted"> (kg)</small>
+                        @Html.TextBoxFor(x => x.Weight, new { @class = "form-control", @required = "required", @type = "number" })
+                        <div class="invalid-feedback">
+                            Valid weight is required.
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row pb-4">
+                    <div id="loader" class="loader mx-auto"></div>
+                </div>
+
+                    <div>
+                        @if (Model.IsVisiblePrice)
+                        {
+                            <div id="price-tag">
+                                @Html.Partial("~/Views/Home/_Price.cshtml", Model.PriceVM)
+                            </div>
+                        }
+                        else
+                        {
+                            <div>
+                                <h3 class="text-center">@Model.Notification</h3>
+                            </div>
+                        }
+                    </div>
+
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Estimate my price</button>
+                       
+              
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function successAnimation() {
+        $('#loader').hide();
+    }
+</script>

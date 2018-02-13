@@ -1,16 +1,27 @@
-﻿
+﻿@model SoftwareTest.ViewModels.PriceViewModel
 
-<div class="card text-center pt-3 pb-3">
-    <div class="card-block">
-        <h4 class="card-title">Your estimated price</h4>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-         @Ajax.ActionLink("Proceed with checkout", "Index", "Order", null,
+<div class="d-block">
+    <div class="card text-center pt-3 pb-3">
+        <div class="card-block">
+            <h4 class="card-title">Your estimated lowest price</h4>
+            <h4 class="text-center">@Model.Price Euro</h4>
+            <p class="card-text">We encourage you to checkout with this sweet deal!</p>
+            @Ajax.ActionLink("Proceed with checkout", "Index", "Order", null,
                     new AjaxOptions
-                     {
-                         UpdateTargetId = "checkout-form",
-                         InsertionMode = InsertionMode.Replace, 
-                         HttpMethod = "GET"
-                     })
-
+                    {
+                        UpdateTargetId = "checkout-form",
+                        InsertionMode = InsertionMode.Replace,
+                        HttpMethod = "GET",
+                        OnSuccess = "startAnim"
+                       
+                    })
+        </div>
     </div>
 </div>
+
+<script>
+    function startAnim() {
+        $('#checkout-form').addClass('animated fadeInLeft');
+    }
+
+</script>

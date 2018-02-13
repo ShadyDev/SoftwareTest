@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SoftwareTest.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,12 @@ namespace SoftwareTest.Controllers
         // GET: Order
         public ActionResult Index()
         {
-            return View();
+            OrderViewModel orderVM = new OrderViewModel()
+            {
+                isVisible = true
+            };
+
+            return PartialView("~/Views/Order/_Index.cshtml", orderVM);
         }
     }
 }

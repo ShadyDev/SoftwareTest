@@ -6,26 +6,23 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="~/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+
     <link href="~/wwwroot/css/site.min.css" rel="stylesheet" />
 </head>
 <body class="bg-light">
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <a class="navbar-brand" href="#">Cargo4You</a>
+            <a href="@Url.Action("Index", "Home")" class="nav-link" style="color:white;"><strong>Cargo4You</strong></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                </ul>
-            </div>
         </nav>
     </header>
     <div class="container pt-5">
         @RenderBody()
+
         <hr />
         <footer class="my-5 pt-5 text-muted text-center text-small">
             <p class="mb-1">&copy; 2017-2018 Cargo4You</p>
@@ -36,12 +33,10 @@
             </ul>
         </footer>
     </div>
- 
 
-    <script src="~/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="~/node_modules/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
-    <script src="~/node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/node_modules/popper.js/dist/popper.min.js"></script>
+
+    
 </body>
 </html>

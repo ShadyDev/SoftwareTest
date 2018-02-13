@@ -11,5 +11,10 @@ namespace SoftwareTest.Models
         [Key]
         public int id { get; set; }
         public string name { get; set; }
+        //Validators
+        public float minWeight { get; set; }
+        public float maxWeight { get; set; }
+        public float minSize { get; set; }
+        public float maxSize { get; set; }
     }
 }

@@ -53,9 +53,14 @@ namespace SoftwareTest.Controllers
                         ModelState.Clear();
                     }
                 }
+                else
+                {
+                    return PartialView("~/Views/Home/_Form.cshtml", vm);
+                }
             }
             catch (Exception Ex)
             {
+                return PartialView("~/Views/Error/_Error.cshtml");
                 throw Ex;
             }
 

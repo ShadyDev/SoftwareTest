@@ -1,10 +1,13 @@
-﻿using System;
+﻿using FluentValidation.Attributes;
+using SoftwareTest.Validators;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
 namespace SoftwareTest.ViewModels
 {
+    [Validator(typeof(FormViewModelValidator))]
     public class FormViewModel
     {
         public int? Width { get; set; }
